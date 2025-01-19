@@ -34,7 +34,8 @@ public class DefenderAI : MonoBehaviour
 
         // Face the player
         float angle = Mathf.Atan2(directionToPlayer.z, directionToPlayer.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, -angle + 90, 0); // Rotate the defender to face the player
+        Quaternion targetRotation = Quaternion.Euler(0, -angle + 90, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, speed * Time.deltaTime);
     }
 
     void LateUpdate()

@@ -4160,6 +4160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1721369092}
   distanceToMaintain: 2
+  speed: 2
 --- !u!143 &1294254668
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4385,6 +4386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1721369092}
+  rotationSpeed: 2
 --- !u!143 &1421770698
 CharacterController:
   m_ObjectHideFlags: 0
