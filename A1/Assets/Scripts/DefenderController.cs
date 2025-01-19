@@ -4,6 +4,7 @@ public class DefenderAI : MonoBehaviour
 {
     public Transform player;               // Reference to the player (attacker)
     public float distanceToMaintain = 2.0f; // Distance the defender should maintain from the player
+    public float speed = 2.0f;
     private CharacterController controller; // CharacterController component
 
     private Vector3 initialPosition;       // Initial position of the defender
@@ -28,7 +29,7 @@ public class DefenderAI : MonoBehaviour
         if (distance > distanceToMaintain)
         {
             Vector3 moveDirection = directionToPlayer.normalized * (distance - distanceToMaintain);
-            controller.Move(moveDirection * Time.deltaTime); // Move the defender
+            controller.Move(moveDirection * speed * Time.deltaTime);
         }
 
         // Face the player
