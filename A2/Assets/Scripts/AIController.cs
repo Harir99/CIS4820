@@ -19,7 +19,7 @@ public class AIController : MonoBehaviour {
 	private bool			isControllable = true;
 	private bool			isDead = false;
 
-	//This is a hack for legacy animation - we will do this properly later
+	//This is a hack for legacy animation
 	private bool			deathStarted = false; 
 
 
@@ -52,7 +52,7 @@ public class AIController : MonoBehaviour {
 	}
 	
 	public void BeDead(){
-		//This is a hack for legacy animation - we will do this properly later
+		//This is a hack for legacy animation
 		if (!deathStarted)
 		{
 			anim.CrossFade("die", 0.1f);
@@ -65,13 +65,22 @@ public class AIController : MonoBehaviour {
 
 		if (!anim.isPlaying)
         {
-			gameObject.SetActive(false);
-			this.IsControllable = false;
+			StartCoroutine(timedDeatcivation(4f));
 		}
 	}
-	
+
+	IEnumerator timedDeatcivation(float seconds)
+	{		
+
+		//Wait for several seconds
+		yield return new WaitForSeconds(seconds);
+		gameObject.SetActive(false);
+		this.IsControllable = false;
+	}
+
 	public void BeIdle(){
-		anim.CrossFade("idle", 0.2f);	
+		anim.CrossFade("idle", 0.2f);
+		anim["idle"].speed = 1.0f;
 		moveDirection = new Vector3(0,0,0);
 	}
 	
@@ -81,8 +90,6 @@ public class AIController : MonoBehaviour {
 			return;
 		
 		currentState.Execute(this);	
-		moveDirection.y -= gravity*Time.deltaTime;
-		controller.Move(moveDirection * Time.deltaTime);
 	}
 
 	void OnDisable()

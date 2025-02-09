@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{32C3BDE6-E125-3128-82C1-25D0441455A3}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="24" Column="1" />
+      <File FileName="Assets/Scripts/PlayerStatus.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIController.cs" Line="143" Column="2" />
+      <File FileName="Assets/Scripts/AIStatus.cs" Line="31" Column="3" />
+      <File FileName="Assets/Scripts/SpartanController.txt" />
+      <File FileName="Assets/Scripts/StateAttack.cs" />
+      <File FileName="Assets/Scripts/StateIdle.cs" Line="12" Column="38" />
+      <File FileName="Assets/Scripts/StateDead.cs" Line="4" Column="23" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="My project" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="AIController.cs" selected="True" />
+              </Node>
+              <Node name="SkeletonData" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="eeebe2f9-ad86-49de-a6fd-a22834c57bf8" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

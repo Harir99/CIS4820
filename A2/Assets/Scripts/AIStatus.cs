@@ -29,4 +29,8 @@ public class AIStatus : MonoBehaviour {
 
 		}
 	}
+	void Update()
+    {
+		//Debug.Log("health is " + health);
+    }
 }
