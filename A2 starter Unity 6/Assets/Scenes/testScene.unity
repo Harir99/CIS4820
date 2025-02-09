@@ -541,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 608191cf3aeaa85419bb4558fccb064b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.56
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 608191cf3aeaa85419bb4558fccb064b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -669,6 +669,11 @@ MonoBehaviour:
 --- !u!4 &1049964555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 608191cf3aeaa85419bb4558fccb064b, type: 3}
+  m_PrefabInstance: {fileID: 1049964549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1049964556 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: -5716681864270162303, guid: 608191cf3aeaa85419bb4558fccb064b, type: 3}
   m_PrefabInstance: {fileID: 1049964549}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1197591153
@@ -853,12 +858,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7400014, guid: 86c591ebd74142c4d93243d9fa9544da, type: 3}
     - target: {fileID: 11400002, guid: ac945d9422fe74dd0a9793c567f71376, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1049964556}
+    - target: {fileID: 11400002, guid: ac945d9422fe74dd0a9793c567f71376, type: 3}
       propertyPath: skeleton
       value: 
       objectReference: {fileID: 560881903}
     - target: {fileID: 11400002, guid: ac945d9422fe74dd0a9793c567f71376, type: 3}
+      propertyPath: sightRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ac945d9422fe74dd0a9793c567f71376, type: 3}
+      propertyPath: playerStatus
+      value: 
+      objectReference: {fileID: 1049964551}
+    - target: {fileID: 11400002, guid: ac945d9422fe74dd0a9793c567f71376, type: 3}
       propertyPath: attackDistance
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

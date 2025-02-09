@@ -12,10 +12,11 @@ public class StateRun : State
         }
 
         Transform player = character.Target;
-        Vector3 targetPosition = player.position;
-        targetPosition.y = 0;
+        
 
         float distance = Vector3.Distance(character.transform.position, player.position);
+        Vector3 targetPosition = player.position;
+        targetPosition.y = 0;
 
         if (distance <= character.attackDistance)
         {
