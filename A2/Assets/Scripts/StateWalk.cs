@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using static UnityEngine.GraphicsBuffer;
 
 public class StateWalk : State
 {
@@ -11,23 +12,19 @@ public class StateWalk : State
             return;
         }
 
-        Transform target = character.GetTarget();
-        if (target == null) return;
+        Transform player = character.Target;
+        
 
-        float distance = Vector3.Distance(character.transform.position, target.position);
+        float distance = Vector3.Distance(character.transform.position, player.position);
+        Vector3 targetPosition = player.position;
+        targetPosition.y = 0;
+
         if (distance <= character.attackDistance)
         {
             character.ChangeState(new StateAttack());
+            return;
         }
-        else if (distance > character.GetWalkRadius())
-        {
-            character.ChangeState(new StateRun());
-        }
-        else
-        {
-            character.GetAnimation().CrossFade("walk", 0.2f);
-            character.MoveTowards(target.position, character.walkSpeed);
-        }
+
+        character.BeWalk();
     }
 }
-

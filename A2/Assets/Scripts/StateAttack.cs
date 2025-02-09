@@ -1,11 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class StateAttack : State
 {
-    //private float attackCooldown = 1.0f;
-    private float lastAttackTime = 0f;
-
     public override void Execute(AIController character)
     {
         if (character.IsDead)
@@ -14,27 +11,15 @@ public class StateAttack : State
             return;
         }
 
-        Transform target = character.GetTarget();
-        if (target == null) return;
+        Transform player = character.Target;
+        float distance = Vector3.Distance(character.transform.position, player.position);
 
-        float distance = Vector3.Distance(character.transform.position, target.position);
         if (distance > character.attackDistance)
         {
             character.ChangeState(new StateWalk());
+            return;
         }
-        else
-        {
-            character.GetAnimation().CrossFade("attack", 0.1f);
-            //if (Time.time - lastAttackTime >= attackCooldown)
-            //{
-            //    character.GetPlayerStatus().ApplyDamage(character.attackValue);
-            //    lastAttackTime = Time.time;
-            //}
-            if (Time.time - lastAttackTime >= character.attackSpeed)
-            {
-                character.GetPlayerStatus().ApplyDamage(character.attackValue);
-                lastAttackTime = Time.time;
-            }
-        }
+
+        character.BeAttack();
     }
 }

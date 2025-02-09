@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVelocity;
     Vector3 rotateDirection;
     float yVelocity = 0;
-    private Animation animation;
+    private Animation anim;
     private bool isControllable = true;
     private GameObject[] enemies;
 
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         status = GetComponent<PlayerStatus>();
-        animation = GetComponent<Animation>();
+        anim = GetComponent<Animation>();
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         Debug.Log(enemies.Length);
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         //Z is 1 if moving forward, -1 otherwise
         if (Input.GetAxis("Fire2") != 0)
         {
-            animation.CrossFade("attack", 0.1f);
+            anim.CrossFade("attack", 0.1f);
             int closestEnemyInd = FindClosest();
             if (closestEnemyInd >= 0)
             {
@@ -102,11 +102,11 @@ public class PlayerController : MonoBehaviour
         playerVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));
         if (playerVelocity.magnitude == 0)
         {
-            animation.CrossFade("idle", 0.1f);
+            anim.CrossFade("idle", 0.1f);
         }
         else
         {
-            animation.CrossFade("walk", 0.1f);
+            anim.CrossFade("walk", 0.1f);
         }
 
         //Transforms from local to world space

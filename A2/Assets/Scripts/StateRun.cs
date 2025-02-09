@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class StateRun : State
@@ -11,18 +11,24 @@ public class StateRun : State
             return;
         }
 
-        Transform target = character.GetTarget();
-        if (target == null) return;
+        Transform player = character.Target;
+        
 
-        float distance = Vector3.Distance(character.transform.position, target.position);
-        if (distance <= character.GetWalkRadius())
+        float distance = Vector3.Distance(character.transform.position, player.position);
+        Vector3 targetPosition = player.position;
+        targetPosition.y = 0;
+
+        if (distance <= character.attackDistance)
+        {
+            character.ChangeState(new StateAttack());
+            return;
+        }
+        else if (distance <= character.walkDistance)
         {
             character.ChangeState(new StateWalk());
+            return;
         }
-        else
-        {
-            character.GetAnimation().CrossFade("run", 0.2f);
-            character.MoveTowards(target.position, character.runSpeed);
-        }
+
+        character.BeRun();
     }
 }
