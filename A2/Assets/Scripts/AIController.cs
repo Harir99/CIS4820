@@ -7,7 +7,7 @@ public class AIController : MonoBehaviour
 
     public float attackDistance = 2.0f;
     public float walkDistance = 5.0f;
-    public float sightRadius = 10.0f;
+    public float sightRadius = 20.0f;
 
     private float attackSpeed = 4.0f;
     private float gravity = 50.0f;
@@ -117,17 +117,40 @@ public class AIController : MonoBehaviour
         }
     }
 
+    public void BeRunAway()
+    {
+        anim.CrossFade("run", 0.2f);
+        Vector3 direction = (transform.position - Target.position).normalized;
+        direction += new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f)); 
+        Move(direction, 2.5f); 
+    }
+
     public void Move(Vector3 direction, float speed)
     {
+
         moveDirection = direction * speed;
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
+
+        // Force the y component of the position to 0
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = 0;  // Force y to 0
+        transform.position = currentPosition;
+
     }
 
     void Update()
     {
         if (!isControllable) return;
+        AIStatus status = GetComponent<AIStatus>();
+        if (status != null && status.GetHealth() < 10f)
+        {
+            //Debug.Log("NPC health low: " + status.GetHealth() + ". Switching to RunAway!");
+            ChangeState(new StateRunAway());
+        }
+
         currentState.Execute(this);
+        
     }
     void OnDisable()
 	{

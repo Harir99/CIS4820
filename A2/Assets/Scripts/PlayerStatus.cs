@@ -26,7 +26,7 @@ public class PlayerStatus : MonoBehaviour {
 	
 	public void ApplyDamage(float damage){
 		health -= damage;
-		//Debug.Log("Ouch! " + health);
+		//Debug.Log("Ouch! Player Health " + health);
 		if (health <= 0){
 			health = 0;
 			StartCoroutine(Die());

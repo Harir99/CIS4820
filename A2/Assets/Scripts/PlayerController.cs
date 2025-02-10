@@ -126,6 +126,12 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y = yVelocity;
 
+        // Force the player's y position to 0 to keep the player grounded
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = 0;  // Force y to 0
+        transform.position = currentPosition;
+
+
         float moveHorz = Input.GetAxis("Horizontal");
         if (moveHorz > 0) //right turn - rotate clockwise, or about +Y
             rotateDirection = new Vector3(0, 1, 0);

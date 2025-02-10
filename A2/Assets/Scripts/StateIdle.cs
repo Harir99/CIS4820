@@ -9,6 +9,14 @@ public class StateIdle : State
             return;
         }
 
+        // Check if health is low, run away
+        AIStatus status = character.GetComponent<AIStatus>();
+        if (status != null && status.GetHealth() < 10)
+        {
+            //Debug.Log("NPC health low: " + status.GetHealth() + ". Switching to RunAway!");
+            character.ChangeState(new StateRunAway());
+        }
+
         if (character.EnemySeen())
         {
             float distance = Vector3.Distance(character.transform.position, character.Target.position);

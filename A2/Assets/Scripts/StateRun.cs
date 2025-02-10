@@ -15,8 +15,6 @@ public class StateRun : State
         
 
         float distance = Vector3.Distance(character.transform.position, player.position);
-        Vector3 targetPosition = player.position;
-        targetPosition.y = 0;
 
         if (distance <= character.attackDistance)
         {
@@ -30,5 +28,9 @@ public class StateRun : State
         }
 
         character.BeRun();
+
+        //Vector3 currentPosition = character.transform.position;
+        //currentPosition.y = 0;  // Force y to 0
+        //character.transform.position = currentPosition;
     }
 }

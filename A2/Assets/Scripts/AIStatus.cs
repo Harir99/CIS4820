@@ -14,11 +14,18 @@ public class AIStatus : MonoBehaviour {
 	void Start(){
 		aiController = GetComponent< AIController>();
 	}
-	
-	public bool isAlive() {return !dead;}	
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public bool isAlive() {return !dead;}	
 	
 	public void ApplyDamage(float damage){
 		//Debug.Log("Enemy NPC damage " + damage);
+		//Debug.Log("NPC health " + health);
+
 		health -= damage;
 		if (health <= 0 && !aiController.IsDead)
 		{
@@ -32,5 +39,5 @@ public class AIStatus : MonoBehaviour {
 	void Update()
     {
 		//Debug.Log("health is " + health);
-    }
+	}
 }
