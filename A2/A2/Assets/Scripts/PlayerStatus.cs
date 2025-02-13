@@ -9,11 +9,17 @@ public class PlayerStatus : MonoBehaviour {
 
 	private PlayerController playerController;
 	
-	public void AddHealth(float moreHealth){
-		health += moreHealth;
-	}
-	
-	public float GetHealth(){
+    public void AddHealth(float moreHealth)
+    {
+        health += moreHealth;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        Debug.Log("Player gained 10 health! Player Health: " + health);
+    }
+
+    public float GetHealth(){
 		return health;
 	}
 
@@ -26,8 +32,9 @@ public class PlayerStatus : MonoBehaviour {
 	
 	public void ApplyDamage(float damage){
 		health -= damage;
-		//Debug.Log("Ouch! Player Health " + health);
-		if (health <= 0){
+        Debug.Log("Player received " + damage + " damage. Remaining Health: " + health);
+
+        if (health <= 0){
 			health = 0;
 			StartCoroutine(Die());
 		}
@@ -43,7 +50,7 @@ public class PlayerStatus : MonoBehaviour {
 		ShowCharacter();
 		health = maxHealth;
 		dead = false;
-	}
+    }
 	
 	void HideCharacter(){	
 	

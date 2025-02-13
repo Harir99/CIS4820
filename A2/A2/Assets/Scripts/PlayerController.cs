@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isControllable = true;
     private GameObject[] enemies;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
     void OnGUI()
     {
         GUI.Box(new Rect(Screen.width - 100, 0, 100, 50), " " + status.GetHealth().ToString());
+
     }
 
     /* Update is called once per frame */
@@ -86,17 +88,23 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        //Z is 1 if moving forward, -1 otherwise
+        // Check if player can attack based on the swingCooldown
         if (Input.GetAxis("Fire2") != 0)
         {
+
             anim.CrossFade("attack", 0.1f);
             int closestEnemyInd = FindClosest();
             if (closestEnemyInd >= 0)
             {
-                AIStatus status = enemies[closestEnemyInd].GetComponent<AIStatus>();
-                status.ApplyDamage(5*Time.deltaTime);
+                AIStatus enemyStatus = enemies[closestEnemyInd].GetComponent<AIStatus>();
+                enemyStatus.ApplyDamage(5);
+                if (!enemyStatus.isAlive())
+                {
+                    status.AddHealth(10);
+                }
             }
             return;
+
         }
 
         playerVelocity = new Vector3(0, 0, Input.GetAxis("Vertical"));

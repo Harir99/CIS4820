@@ -23,16 +23,15 @@ public class AIStatus : MonoBehaviour {
     public bool isAlive() {return !dead;}	
 	
 	public void ApplyDamage(float damage){
-		//Debug.Log("Enemy NPC damage " + damage);
-		//Debug.Log("NPC health " + health);
-
-		health -= damage;
+        health -= damage;
+		Debug.Log("Enemy received " + damage + " damage. Remaining Health: " + health);
 		if (health <= 0 && !aiController.IsDead)
 		{
 			dead = true;
 			health = 0;
 			print("***********Dead!*************");
 			aiController.IsDead = true;
+
 
 		}
 	}

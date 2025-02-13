@@ -25,6 +25,9 @@ public class AIController : MonoBehaviour
     private bool isDead = false;
     private bool deathStarted = false;
 
+    private float attackCooldown = 1.0f; // Time between attacks
+
+
     public bool IsControllable
     {
         get { return isControllable; }
@@ -106,16 +109,23 @@ public class AIController : MonoBehaviour
         Vector3 direction = (Target.position - transform.position).normalized;
         Move(direction, 4.0f);
     }
-    
+
     public void BeAttack()
     {
         anim.CrossFade("attack", 0.2f);
-        if (Time.time - lastAttackTime >= 1.0f / attackSpeed)
+        float distance = Vector3.Distance(transform.position, Target.position);
+
+        if (distance <= attackDistance)
         {
-            playerStatus.ApplyDamage(attackValue);
-            lastAttackTime = Time.time;
+            // Apply damage once per animation frame, and only once per attack
+            if (Time.time - lastAttackTime >= attackCooldown / attackSpeed)
+            {
+                playerStatus.ApplyDamage(attackValue);
+                lastAttackTime = Time.time; 
+            }
         }
     }
+
 
     public void BeRunAway()
     {
@@ -142,16 +152,26 @@ public class AIController : MonoBehaviour
     void Update()
     {
         if (!isControllable) return;
+
         AIStatus status = GetComponent<AIStatus>();
-        if (status != null && status.GetHealth() < 10f)
+        if (status != null)
         {
-            //Debug.Log("NPC health low: " + status.GetHealth() + ". Switching to RunAway!");
-            ChangeState(new StateRunAway());
+            if (status.GetHealth() <= 0f)
+            {
+                // AI is dead, switch to StateDead
+                ChangeState(new StateDead());
+            }
+            else if (status.GetHealth() < 10f)
+            {
+                // AI is low on health, switch to RunAway (only if not dead)
+                ChangeState(new StateRunAway());
+            }
+
         }
 
         currentState.Execute(this);
-        
     }
+
     void OnDisable()
 	{
 		/*
